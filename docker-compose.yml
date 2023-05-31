@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  vintagestory-server:
+    build: .
+    image: vintagestory-docker
+    container_name: vintagestory-server
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    volumes:
+      - ~/appdata/vintagestory:/gamedata
+    ports:
+      - 42420:42420
+    environment:
+      VS_DATA_PATH: /gamedata
