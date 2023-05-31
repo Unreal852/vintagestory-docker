@@ -1,7 +1,11 @@
 version: "3.9"
 services:
   vintagestory-server:
-    build: .
+    build:
+      context: .
+      args:
+        - vs_branch=stable
+        - vs_version=1.18.5
     image: vintagestory-docker
     container_name: vintagestory-server
     restart: unless-stopped
