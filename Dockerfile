@@ -4,9 +4,8 @@ WORKDIR /vsdownload
 
 # Types: stable, unstable
 ARG vs_branch=stable
-ARG vs_version=1.18.5
+ARG vs_version=1.18.6
 
-RUN echo "Building for Vintage Story ${vs_branch}}:${vs_version}}}"
 RUN wget "https://cdn.vintagestory.at/gamefiles/${vs_branch}/vs_server_${vs_version}.tar.gz"
 RUN tar xzf "vs_server_${vs_version}.tar.gz"
 RUN rm "vs_server_${vs_version}.tar.gz"
