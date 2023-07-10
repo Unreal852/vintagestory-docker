@@ -16,4 +16,4 @@ services:
     ports:
       - 42420:42420
     environment:
-      VS_DATA_PATH: /gamedata
+      VS_GAMEDATA: /gamedata
