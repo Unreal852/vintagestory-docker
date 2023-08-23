@@ -1,0 +1,20 @@
+# Download stage
+FROM alpine:latest as downloader
+WORKDIR /vsdownload
+
+# Types: stable, unstable
+ARG vs_branch=stable
+ARG vs_version=1.18.8
+
+RUN wget "https://cdn.vintagestory.at/gamefiles/${vs_branch}/vs_server_linux-x64_${vs_version}.tar.gz"
+RUN tar xzf "vs_server_linux-x64_${vs_version}.tar.gz"
+RUN rm "vs_server_linux-x64_${vs_version}.tar.gz"
+
+# Runtime stage
+FROM mcr.microsoft.com/dotnet/runtime
+COPY --from=downloader "./vsdownload" "/game"
+
+ENV vs_gamedata=/gamedata
+EXPOSE 42420/tcp
+WORKDIR /game
+CMD dotnet VintagestoryServer.dll --dataPath ${vs_gamedata}
