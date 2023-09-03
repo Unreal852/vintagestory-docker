@@ -1,5 +1,5 @@
 # Download stage
-FROM alpine:latest as downloader
+FROM rockylinux:9.2 as downloader
 WORKDIR /vsdownload
 
 # Branches: stable, unstable
@@ -7,10 +7,11 @@ WORKDIR /vsdownload
 # For the available versions, please refer to https://account.vintagestory.at/
 ARG vs_branch=stable
 ARG vs_os=linux-x64
-ARG vs_version=1.18.8
+ARG vs_version=1.18.10
 
+RUN dnf install wget -y
 RUN wget "https://cdn.vintagestory.at/gamefiles/${vs_branch}/vs_server_${vs_os}_${vs_version}.tar.gz"
-RUN tar xzf "vs_server_${vs_os}_${vs_version}.tar.gz"
+RUN tar xf "vs_server_${vs_os}_${vs_version}.tar.gz"
 RUN rm "vs_server_${vs_os}_${vs_version}.tar.gz"
 
 # Runtime stage
