@@ -13,7 +13,7 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      - ~/appdata/vintagestory:/gamedata
+      - /appdata/vintagestory:/gamedata
     ports:
       - 42420:42420
     environment:
