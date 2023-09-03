@@ -14,7 +14,7 @@ RUN tar xzf "vs_server_${vs_os}_${vs_version}.tar.gz"
 RUN rm "vs_server_${vs_os}_${vs_version}.tar.gz"
 
 # Runtime stage
-FROM mcr.microsoft.com/dotnet/runtime:7.0
+FROM mcr.microsoft.com/dotnet/runtime:7.0 as runtime
 WORKDIR /game
 ENV vs_gamedata=/gamedata
 COPY --from=downloader "./vsdownload/" "/game"
