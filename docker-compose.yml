@@ -5,15 +5,16 @@ services:
       context: .
       args:
         - vs_branch=stable
-        - vs_version=1.18.6
+        - vs_os=linux-x64
+        - vs_version=1.18.10
     image: vintagestory-docker
     container_name: vintagestory-server
     restart: unless-stopped
     tty: true
     stdin_open: true
     volumes:
-      - /appdata/vintagestory:/gamedata
+      - ~/appdata/vintagestory:/gamedata
     ports:
       - 42420:42420
     environment:
-      VS_GAMEDATA: /gamedata
+      vs_gamedata: /gamedata
